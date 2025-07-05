@@ -1,0 +1,51 @@
+<app-header></app-header>
+<main class="mt-18 h-full bg-gradient-to-b from-black/70 from-6% via-black/90 via-30% to-black/100  to-100%">
+    <div *ngIf="gameDescription"
+        class="absolute top-0 h-full w-full bg-gradient-to-b from-black/70 from-6% via-black/90 via-30% to-black/100  to-100%">
+        <img [src]="gameDescription.background_image" class="bg-gradient-to-b to-black/100 to 100%">
+    </div>
+    <div
+        class="relative gap-5 mt-18 z-20 h-screen bg-gradient-to-b from-black/70 from-6% via-black/90 via-30% to-black/100  to-100% flex justify-around  flex-row">
+        <div class="flex m-10">
+            <div *ngIf="gameDescription" class=" flex flex-col w-4xl p-5 gap-1">
+                <h1 class="text-5xl text-white font-bold">{{ gameDescription.name }}</h1>
+                <div class="flex gap-1 mt-0.5">
+                    <button
+                        class="text-black bg-white opacity-45 hover:opacity-100 w-auto border-none rounded-xs p-2 cursor-pointer duration-500">Add
+                        a review</button>
+                    <button
+                        class="text-black bg-white opacity-45 hover:opacity-100 w-auto border-none rounded-xs p-2 cursor-pointer duration-500">Save
+                        to collection</button>
+                </div>
+                <div class="mt-2.5">
+                    <div class="w-10 h-10">
+                        
+                            <svg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'>
+                                <path
+                                    d='M0 13.772l6.545.902V8.426H0zM0 7.62h6.545V1.296L0 2.198zm7.265 7.15l8.704 1.2V8.425H7.265zm0-13.57v6.42h8.704V0z'
+                                    fill='#FFF' />
+                            </svg>
+                        
+                    </div>
+                </div>
+                <div class="overflow-hidden transition-all duration-300 ease-in-out text-white/80 mt-4"
+                    [style.maxHeight]="expandirTexto ? 'none' : '200px'" [innerHTML]="gameDescription.description"
+                    [class.line-clamp]="!expandirTexto"></div>
+                <button class="cursor-pointer mt-2 text-blue-400 w-40 text-start hover:text-blue-200 underline"
+                    (click)="textToogle()">
+                    {{ expandirTexto ? 'Show less' : 'Read more' }}
+                </button>
+            </div>
+            <div class=" flex flex-col w-[40%] p-5" >
+                <div class="" *ngIf="gameDescription">
+                    <img [src]="gameDescription.background_image_additional" class="rounded-2xl">
+                </div>
+                <div class="grid grid-cols-2 grid-rows-3 gap-2  mt-4">
+                    <img *ngFor="let i of screenshotsIndex" [src]="i.image" class="rounded-2xl">
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</main>

@@ -1,0 +1,55 @@
+<div class="inline-flex flex-col w-full relative">
+  <h1 class="text-white font-bold ml-6 text-2xl mb-3.5">{{ titleTrack }}</h1>
+
+  <!-- Botões de navegação -->
+
+  <button (click)="scrollLeft()"
+    class="absolute h-[70%] left-0  top-14 z-50 bg-black/60 text-white p-2 hover:bg-black/80 cursor-pointer">
+
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>
+
+  </button>
+
+  <button (click)="scrollRight()"
+    class="absolute h-[70%] right-0 top-14  z-50 bg-black/60 text-white p-2  hover:bg-black/80 cursor-pointer">
+
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    </svg>
+
+  </button>
+
+
+  <!-- Container com os cards -->
+  <div class="relative overflow-hidden px-10 mt-4">
+    <div class="inline-flex gap-4 transition-transform duration-500 ease-in-out"
+      [ngStyle]="{ transform: 'translateX(-' + scrollX + 'px)' }">
+      <!-- CARD -->
+      <div *ngFor="let title of titles"
+        class="group relative w-60 flex-shrink-0 z-10 transition-transform duration-700 hover:scale-110 hover:z-20">
+            
+        <img [src]="title.background_image"  [alt]="" class="w-full h-auto object-cover shadow-md" />
+
+
+        <!-- Overlay com info e botões -->
+        <div
+          class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-between">
+          <h2 class="text-white text-sm font-bold mb-2 truncate">{{ title.name }}</h2>
+
+          <div class="relative gap-2">
+            <button (click)="mostrarAlerta()" class="absolute bg-white text-black px-3 py-1 rounded-2xl hover:bg-gray-200 transition">
+              <a routerLink="">+</a>
+            </button>
+            <button class="ml-12 bg-gray-700 text-white px-3 py-1 rounded hover:bg-gray-600 transition">
+              <a [routerLink]="['/details/', title.slug]">Info</a>
+            </button>
+          </div>
+        </div>
+
+      </div>
+      <!-- /CARD -->
+    </div>
+  </div>
+</div>
